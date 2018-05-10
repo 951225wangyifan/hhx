@@ -1,0 +1,52 @@
+<extend name="Public:base" />
+<block name="body">
+    <link href="/Public/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript">
+        window.UEDITOR_HOME_URL = "/Public/umeditor/";
+        window.onload=function(){
+            window.UMEDITOR_CONFIG.initialFrameHeight=300;//编辑器的高度
+            window.UMEDITOR_CONFIG.imageUrl="{:U('Admin/New/uploadPic')}";          //图片上传提交地址
+            window.UMEDITOR_CONFIG.imagePath='../../../../Public/Uploads/';//编辑器调用图片的地址
+
+            //实例化编辑器
+            var um = UM.getEditor('myEditor');
+        }
+    </script>
+    <script type="text/javascript" src="/Public/umeditor/umeditor.config.js"></script>
+    <script type="text/javascript" src="/Public/umeditor/umeditor.min.js"></script>
+    <script type="text/javascript" src="/Public/umeditor/lang/zh/zh.js"></script>
+    <div class="panel admin-panel">
+        <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>编辑法律法标</strong></div>
+        <div class="body-content">
+            <form method="post" class="form-x" action="/Admin/Falv/edit">
+                <input type="hidden" name="id" value="{$list.id}">
+                <div class="form-group">
+                    <div class="label">
+                        <label>姓名：</label>
+                    </div>
+                    <div class="field">
+                        <input type="text" class="input w50" value="{$list.name}" name="title" data-validate="required:请输入标题" />
+                        <div class="tips"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="label">
+                        <label>手机号码：</label>
+                    </div>
+                    <div class="field">
+                        <input type="text" class="input w50" value="{$list.phone}" name="title" data-validate="required:请输入标题" />
+                        <div class="tips"></div>
+                    </div>
+                 </div>
+
+
+                <div class="form-group">
+                    <div class="field">
+                    <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        </div>
+        </block>

@@ -1,0 +1,171 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="/Public/Admin/lib/html5.js"></script>
+    <script type="text/javascript" src="/Public/Admin/lib/respond.min.js"></script>
+    <script type="text/javascript" src="/Public/Admin/lib/PIE_IE678.js"></script>
+    <![endif]-->
+    <link href="/Public/Admin/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Public/Admin/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+    <link href="/Public/Admin/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/Public/Admin/lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/Public/Admin/lib/zTree/v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <!--[if IE 6]>
+    <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+    <title>赛事列表</title>
+</head>
+<body class="pos-r">
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 比赛管理 <span class="c-gray en">&gt;</span> 赛前列表 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="pd-20">
+    <div class="text-c">
+        <form action="before" method="get">
+           <!-- <span class="select-box inline">
+		<select name="type" class="select">
+			<option value="">全部分类</option>
+			<option value="1" <if condition="$Think.get.type eq 1">selected</if>>算法</option>
+            <option value="2" <if condition="$Think.get.type eq 2">selected</if>>机械</option>
+            <option value="3" <if condition="$Think.get.type eq 3">selected</if>>单片机</option>
+		</select>
+		</span>-->
+            <!--<input type="text" id="starttime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'#F{ $dp.$D(\'endtime\')}'});" class="input-text Wdate" style="width:120px;">
+            -
+            <input type="text" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'#F{ $dp.$D(\'starttime\')}'});" id="endtime" class="input-text Wdate" style="width:120px;">-->
+            <input type="text" name="title" value="{$Think.get.title}" placeholder=" 赛事名称" style="width:250px" class="input-text">
+            <button class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 查询</button>
+        </form>
+    </div>
+    <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"> <a class="btn btn-primary radius" onclick="product_add('添加赛事','/Admin/Match/addb')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加赛事</a></span> <span class="r">共有数据：<strong>{$count}</strong> 条</span> </div>
+    <div class="mt-20">
+        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
+            <table class="table table-border table-bordered table-bg table-hover table-sort">
+                <thead>
+                <tr class="text-c">
+                    <th width="40">ID</th>
+                    <th width="100">赛事图片</th>
+                    <th width="100">赛事名称</th>
+                    <th width="100">创建时间</th>
+                    <th width="100">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <volist name="list" id="vo">
+                    <tr class="text-c va-m">
+                        <td>{$vo.id}</td>
+                        <td><img src="{$vo.picture}" width="30px" height="40px"></td>
+                        <td class="text-l">{$vo.title}</td>
+                        <td>{$vo.create_time|date="Y-m-d",###}</td>
+                        <td class="td-manage"> <a style="text-decoration:none" class="ml-5" onClick="product_edit('赛事编辑','/Admin/Match/editb?id={$vo.id}&type=1')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="product_del(this,{$vo.id})" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+            <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                {$page}
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/Public/Admin/lib/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/Public/Admin/lib/layer/1.9.3/layer.js"></script>
+    <script type="text/javascript" src="/Public/Admin/lib/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="/Public/Admin/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="/Public/Admin/lib/zTree/v3/js/jquery.ztree.all-3.5.min.js"></script>
+    <script type="text/javascript" src="/Public/Admin/js/H-ui.js"></script>
+    <script type="text/javascript" src="/Public/Admin/js/H-ui.admin.js"></script>
+    <script type="text/javascript">
+        var setting = {
+            view: {
+                dblClickExpand: false,
+                showLine: false,
+                selectedMulti: false
+            },
+            data: {
+                simpleData: {
+                    enable:true,
+                    idKey: "id",
+                    pIdKey: "pId",
+                    rootPId: ""
+                }
+            },
+            callback: {
+                beforeClick: function(treeId, treeNode) {
+                    var zTree = $.fn.zTree.getZTreeObj("tree");
+                    if (treeNode.isParent) {
+                        zTree.expandNode(treeNode);
+                        return false;
+                    } else {
+                        demoIframe.attr("src",treeNode.file + ".html");
+                        return true;
+                    }
+                }
+            }
+        };
+
+        var zNodes =[
+            { id:1, pId:0, name:"一级分类", open:true},
+            { id:11, pId:1, name:"二级分类"},
+            { id:111, pId:11, name:"三级分类"},
+            { id:112, pId:11, name:"三级分类"},
+            { id:113, pId:11, name:"三级分类"},
+            { id:114, pId:11, name:"三级分类"},
+            { id:115, pId:11, name:"三级分类"},
+            { id:12, pId:1, name:"二级分类 1-2"},
+            { id:121, pId:12, name:"三级分类 1-2-1"},
+            { id:122, pId:12, name:"三级分类 1-2-2"},
+        ];
+
+        var code;
+
+        function showCode(str) {
+            if (!code) code = $("#code");
+            code.empty();
+            code.append("<li>"+str+"</li>");
+        }
+
+        $(document).ready(function(){
+            var t = $("#treeDemo");
+            t = $.fn.zTree.init(t, setting, zNodes);
+            demoIframe = $("#testIframe");
+            demoIframe.bind("load", loadReady);
+            var zTree = $.fn.zTree.getZTreeObj("tree");
+            zTree.selectNode(zTree.getNodeByParam("id",'11'));
+        });
+
+
+        /*课程-添加*/
+        function product_add(title,url){
+            var index = layer.open({
+                type: 2,
+                title: title,
+                content: url
+            });
+            layer.full(index);
+        }
+        /*课程-编辑*/
+        function product_edit(title,url,id,w,h){
+            var index = layer.open({
+                type: 2,
+                title: title,
+                content: url
+            });
+            layer.full(index);
+        }
+        /*课程-删除*/
+        function product_del(obj,id){
+            if(confirm('确认要删除吗？') == true){
+                window.location.href='/Admin/Match/delete?id='+id;
+            }else {
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

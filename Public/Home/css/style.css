@@ -1,0 +1,55 @@
+.head {
+	width:100%;
+	height:80px;
+	/* background-color: #393D49; */
+	font-family:"微软雅黑";
+}
+.main {
+	width:100%;
+	min-height:800px;
+	/* background: url(../Images/login-bg-1.jpg) no-repeat center center fixed; */
+	/* background-color: #CECE3E; */
+}
+.main_left {
+	width:19%;
+	min-height:800px;
+	/* background: url(../Images/login-bg-1.jpg) no-repeat center center fixed; */
+	margin-left:4%;
+	margin-right:2%;
+	float:left;
+	border-right:1px #CECECE solid;
+}
+.left-login{
+	width:80%;
+	margin-top:10px;
+	border:2px #CECECE solid;
+	padding:5px;
+}
+.main_main {
+	width:48%;
+	min-height:800px;
+	/* background: url(../Images/login-bg-1.jpg) no-repeat center center fixed; */
+	float:left;
+	/* border:0 2px #CECECE solid; */
+	
+	
+}
+.main-content{
+	margin-left:1%;
+}
+.main_right {
+	width:21%;
+	min-height:800px;
+	/* background: url(../Images/login-bg-1.jpg) no-repeat center center fixed; */
+	background-color: #00EC00;
+	margin-right:4%;
+	float:left;
+	border-left:1px #CECECE solid;
+}
+.bottom {
+	width:100%;
+	height:100px;
+	/* background: url(../Images/login-bg-1.jpg) no-repeat center center fixed; */
+	background-color: #7373B9;
+
+}
