@@ -14,11 +14,11 @@ class CrontabController extends BaseController {
     }
      */
     public function index(){
+        echo 111;
         $data['title'] = 'test';
         $data['content'] = '测试crontab内容';
         $data['type'] = range(1,4);
         $data['create_time'] = time();
         M('news')->add($data);
-        $this->display();
     }
 }
