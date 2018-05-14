@@ -14,7 +14,6 @@ class CrontabController extends BaseController {
     }
      */
     public function index(){
-        echo 111;
         $data['title'] = 'test';
         $data['content'] = '测试crontab内容';
         $data['type'] = rand(1,4);
