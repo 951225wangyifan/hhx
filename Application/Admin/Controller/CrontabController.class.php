@@ -7,7 +7,7 @@
  */
 namespace Admin\Controller;
 use Admin\Controller\CheckController;
-class CrontabController extends CheckController {
+class CrontabController extends BaseController {
 
     /* public function __construct(){
         parent::__construct();
