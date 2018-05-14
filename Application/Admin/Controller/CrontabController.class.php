@@ -18,7 +18,7 @@ class CrontabController extends CheckController {
         $data['content'] = '测试crontab内容';
         $data['type'] = range(1,4);
         $data['create_time'] = time();
-        M('news')->add();
+        M('news')->add($data);
         $this->display();
     }
 }
